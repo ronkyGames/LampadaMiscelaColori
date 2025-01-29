@@ -31,6 +31,37 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // read the sensor values
+  redSensorValue = analogRead(redSensorPin);
+  greenSensorValue = analogRead(greenSensorPin);
+  blueSensorValue = analogRead(blueSensorPin);
+
+  // print the sensor values
+  Serial.print("Raw Sensor Values \t Red: ");
+  Serial.print(redSensorValue);
+  Serial.print("\t Green: ");
+  Serial.print(greenSensorValue);
+  Serial.print("\t Blue: ");
+  Serial.println(blueSensorValue);
+
+  // map the sensor values to the RGB range
+  redValue = redSensorValue / 4;
+  greenValue = greenSensorValue / 4;
+  blueValue = blueSensorValue / 4;
+
+  // print the RGB values
+  Serial.print("Mapped Sensor Values \t Red: ");  
+  Serial.print(redValue);
+  Serial.print("\t Green: ");
+  Serial.print(greenValue);
+  Serial.print("\t Blue: ");
+  Serial.println(blueValue);
+
+  // write the RGB values to the LED pins
+
+  analogWrite(redLEDPin, redValue);
+  analogWrite(greenLEDPin, greenValue);
+  analogWrite(blueLEDPin, blueValue);
+  
 }
 
